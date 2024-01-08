@@ -1,0 +1,306 @@
+:root{
+    --font-size:clamp(9px,1.7vw,14px);
+    --WDS-neutral-gray-50: #fafafa;
+    --WDS-neutral-gray-75: #f4f4f4;
+    --WDS-neutral-gray-100: #eee;
+    --WDS-neutral-gray-200: #d8d8d8;
+    --WDS-neutral-gray-300: #bdbdbd;
+    --WDS-neutral-gray-400: #959393;
+    --WDS-neutral-gray-500: #757778;
+    --WDS-neutral-gray-600: #606263;
+    --WDS-neutral-gray-700: #424445;
+    --WDS-neutral-gray-800: #242626;
+    --WDS-neutral-gray-900: #161717;
+    --WDS-neutral-gray-1000: #0a0a0a;
+    --WDS-cool-gray-50: #f7f8fa;
+    --WDS-cool-gray-75: #f1f2f4;
+    --WDS-cool-gray-100: #eaedee;
+    --WDS-cool-gray-200: #d4d6d8;
+    --WDS-cool-gray-300: #b3b9bd;
+    --WDS-cool-gray-400: #8d9599;
+    --WDS-cool-gray-500: #6c757a;
+    --WDS-cool-gray-600: #5b6368;
+    --WDS-cool-gray-700: #3e474d;
+    --WDS-cool-gray-800: #20272b;
+    --WDS-cool-gray-900: #12181c;
+    --WDS-cool-gray-1000: #0a1014;
+    --WDS-cool-gray-alpha-05: rgba(17,27,33,0.05);
+    --WDS-cool-gray-alpha-10: rgba(17,27,33,0.1);
+    --WDS-cool-gray-alpha-20: rgba(17,27,33,0.2);
+    --WDS-cool-gray-alpha-30: rgba(17,27,33,0.3);
+    --WDS-cool-gray-alpha-40: rgba(17,27,33,0.4);
+    --WDS-cool-gray-alpha-50: rgba(17,27,33,0.5);
+    --WDS-cool-gray-alpha-60: rgba(17,27,33,0.6);
+    --WDS-cool-gray-alpha-70: rgba(17,27,33,0.7);
+    --WDS-cool-gray-alpha-80: rgba(17,27,33,0.8);
+    --WDS-cool-gray-alpha-90: rgba(17,27,33,0.9);
+    --WDS-warm-gray-50: #fbfaf9;
+    --WDS-warm-gray-75: #f7f5f3;
+    --WDS-warm-gray-100: #f1eeeb;
+    --WDS-warm-gray-200: #dbd8d4;
+    --WDS-warm-gray-300: #c2bdb8;
+    --WDS-warm-gray-400: #9f9891;
+    --WDS-warm-gray-500: #7c7771;
+    --WDS-warm-gray-600: #66625d;
+    --WDS-warm-gray-700: #474440;
+    --WDS-warm-gray-800: #262524;
+    --WDS-warm-gray-900: #171616;
+    --WDS-warm-gray-1000: #0b0a0a;
+    --WDS-warm-gray-300-alpha-15: rgba(194,189,184,0.15);
+    --WDS-green-50: #f2fdf0;
+    --WDS-green-75: #e7fce3;
+    --WDS-green-100: #d9fdd3;
+    --WDS-green-200: #acfcac;
+    --WDS-green-300: #71eb85;
+    --WDS-green-400: #25d366;
+    --WDS-green-450: #21c063;
+    --WDS-green-500: #1daa61;
+    --WDS-green-600: #1b8755;
+    --WDS-green-700: #15603e;
+    --WDS-green-750: #144d37;
+    --WDS-green-800: #103529;
+    --WDS-green-500-alpha-30: rgba(29,170,97,0.3);
+    --WDS-green-500-alpha-60: rgba(29,170,97,0.6);
+    --WDS-red-50: #feeff2;
+    --WDS-red-75: #fde8eb;
+    --WDS-red-100: #fbd8dc;
+    --WDS-red-200: #fa99a4;
+    --WDS-red-300: #fb5061;
+    --WDS-red-400: #ea0038;
+    --WDS-red-500: #b80531;
+    --WDS-red-600: #911435;
+    --WDS-red-700: #61182e;
+    --WDS-red-800: #321622;
+    --WDS-red-400-alpha-30: rgba(234,0,56,0.3);
+    --WDS-orange-50: #fff7f5;
+    --WDS-orange-75: #ffebe6;
+    --WDS-orange-100: #fee2d8;
+    --WDS-orange-200: #fdc1ad;
+    --WDS-orange-300: #fc9775;
+    --WDS-orange-400: #fa6533;
+    --WDS-orange-500: #c4532d;
+    --WDS-orange-600: #9a4529;
+    --WDS-orange-700: #6b3424;
+    --WDS-orange-800: #35221e;
+    --WDS-yellow-50: #fffcf5;
+    --WDS-yellow-75: #fff7e5;
+    --WDS-yellow-100: #fff0d4;
+    --WDS-yellow-200: #ffe4af;
+    --WDS-yellow-300: #ffd279;
+    --WDS-yellow-400: #ffb938;
+    --WDS-yellow-500: #c58730;
+    --WDS-yellow-600: #9d6c2c;
+    --WDS-yellow-700: #6d4e26;
+    --WDS-yellow-800: #362c1f;
+    --WDS-purple-50: #f7f5ff;
+    --WDS-purple-75: #efebff;
+    --WDS-purple-100: #e8e0ff;
+    --WDS-purple-200: #d1c4ff;
+    --WDS-purple-300: #a791ff;
+    --WDS-purple-400: #7f66ff;
+    --WDS-purple-500: #5e47de;
+    --WDS-purple-600: #4837af;
+    --WDS-purple-700: #3a327b;
+    --WDS-purple-800: #242447;
+    --WDS-cobalt-50: #f2f8ff;
+    --WDS-cobalt-75: #e1f0ff;
+    --WDS-cobalt-100: #d2e8fe;
+    --WDS-cobalt-200: #99cafe;
+    --WDS-cobalt-300: #53a6fd;
+    --WDS-cobalt-400: #007bfc;
+    --WDS-cobalt-500: #0063cb;
+    --WDS-cobalt-600: #0451a3;
+    --WDS-cobalt-700: #073d76;
+    --WDS-cobalt-800: #092642;
+    --WDS-sky-blue-50: #f2fafe;
+    --WDS-sky-blue-75: #def3fc;
+    --WDS-sky-blue-100: #caecfa;
+    --WDS-sky-blue-200: #93d7f5;
+    --WDS-sky-blue-300: #53bdeb;
+    --WDS-sky-blue-400: #009de2;
+    --WDS-sky-blue-500: #027eb5;
+    --WDS-sky-blue-600: #046692;
+    --WDS-sky-blue-700: #074b6a;
+    --WDS-sky-blue-800: #092c3d;
+    --WDS-pink-50: #fff5f8;
+    --WDS-pink-75: #ffebf1;
+    --WDS-pink-100: #ffdae7;
+    --WDS-pink-200: #ffabc7;
+    --WDS-pink-300: #ff72a1;
+    --WDS-pink-400: #ff2e74;
+    --WDS-pink-500: #d42a66;
+    --WDS-pink-600: #a32553;
+    --WDS-pink-700: #6d1e3e;
+    --WDS-pink-800: #36192a;
+    --WDS-emerald-50: #f0fff9;
+    --WDS-emerald-75: #e1fef2;
+    --WDS-emerald-100: #d5fded;
+    --WDS-emerald-200: #b2f5da;
+    --WDS-emerald-300: #7ae3c3;
+    --WDS-emerald-400: #06cf9c;
+    --WDS-emerald-500: #00a884;
+    --WDS-emerald-600: #008069;
+    --WDS-emerald-700: #125c4e;
+    --WDS-emerald-800: #0a332c;
+    --WDS-teal-50: #edfafa;
+    --WDS-teal-75: #dff6f5;
+    --WDS-teal-100: #cbf2ee;
+    --WDS-teal-200: #95dbd4;
+    --WDS-teal-300: #42c7b8;
+    --WDS-teal-400: #02a698;
+    --WDS-teal-500: #028377;
+    --WDS-teal-600: #046a62;
+    --WDS-teal-700: #074d4a;
+    --WDS-teal-800: #092d2f;
+    --WDS-cream-50: #faf8f5;
+    --WDS-cream-75: #f5f1eb;
+    --WDS-cream-100: #efe9e0;
+    --WDS-cream-200: #e5dbcd;
+    --WDS-cream-300: #d4c3ab;
+    --WDS-cream-400: #c1a886;
+    --WDS-cream-500: #9f8465;
+    --WDS-cream-600: #7b654c;
+    --WDS-cream-700: #504334;
+    --WDS-cream-800: #2c2720;
+    --WDS-brown-50: #fef9f6;
+    --WDS-brown-75: #fcede3;
+    --WDS-brown-100: #f4ded1;
+    --WDS-brown-200: #e5c6b2;
+    --WDS-brown-300: #dba685;
+    --WDS-brown-400: #c0835d;
+    --WDS-brown-500: #9e6947;
+    --WDS-brown-600: #855538;
+    --WDS-brown-700: #5b3c29;
+    --WDS-brown-800: #35271e;
+    --WDS-white-alpha-05: hsla(0,0%,100%,0.05);
+    --WDS-white-alpha-10: hsla(0,0%,100%,0.1);
+    --WDS-white-alpha-20: hsla(0,0%,100%,0.2);
+    --WDS-white-alpha-30: hsla(0,0%,100%,0.3);
+    --WDS-white-alpha-40: hsla(0,0%,100%,0.4);
+    --WDS-white-alpha-50: hsla(0,0%,100%,0.5);
+    --WDS-white-alpha-60: hsla(0,0%,100%,0.6);
+    --WDS-white-alpha-70: hsla(0,0%,100%,0.7);
+    --WDS-white-alpha-80: hsla(0,0%,100%,0.8);
+    --WDS-white-alpha-90: hsla(0,0%,100%,0.9);
+    --WDS-white: #fff;
+    --WDS-black-alpha-05: rgba(0,0,0,0.05);
+    --WDS-black-alpha-10: rgba(0,0,0,0.1);
+    --WDS-black-alpha-20: rgba(0,0,0,0.2);
+    --WDS-black-alpha-30: rgba(0,0,0,0.3);
+    --WDS-black-alpha-40: rgba(0,0,0,0.4);
+    --WDS-black-alpha-50: rgba(0,0,0,0.5);
+    --WDS-black-alpha-60: rgba(0,0,0,0.6);
+    --WDS-black-alpha-70: rgba(0,0,0,0.7);
+    --WDS-black-alpha-80: rgba(0,0,0,0.8);
+    --WDS-black-alpha-90: rgba(0,0,0,0.9);
+    --WDS-black: #000;
+    --WDS-transparent: transparent;
+}
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight:100;
+        src: url(./typography/Montserrat-Thin.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: italic;
+        font-weight:100;
+        src: url(./typography/Montserrat-ThinItalic.ttf);
+    };
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight:200;
+        src: url(./typography/Montserrat-ExtraLight.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: italic;
+        font-weight:200;
+        src: url(./typography/Montserrat-ExtraLightItalic.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight:300;
+        src: url(./typography/Montserrat-Light.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: italic;
+        font-weight:300;
+        src: url(./typography/Montserrat-LightItalic.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight:400;
+        src: url(./typography/Montserrat-Regular.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: italic;
+        font-weight:400;
+        src: url(./typography/Montserrat-Italic.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight:500;
+        src: url(./typography/Montserrat-Medium.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: italic;
+        font-weight:500;
+        src: url(./typography/Montserrat-MediumItalic.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight:600;
+        src: url(./typography/Montserrat-SemiBold.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: italic;
+        font-weight:600;
+        src: url(./typography/Montserrat-SemiBoldItalic.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight:700;
+        src: url(./typography/Montserrat-Bold.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: italic;
+        font-weight:700;
+        src: url(./typography/Montserrat-BoldItalic.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight:800;
+        src: url(./typography/Montserrat-ExtraBold.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: italic;
+        font-weight:800;
+        src: url(./typography/Montserrat-ExtraBoldItalic.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight:900;
+        src: url(./typography/Montserrat-Black.ttf);
+    }
+    @font-face{
+        font-family: 'Montserrat';
+        font-style: italic;
+        font-weight:900;
+        src: url(./typography/Montserrat-BlackItalic.ttf);
+    }
