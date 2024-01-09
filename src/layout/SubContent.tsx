@@ -75,7 +75,7 @@ const SubContent = () => {
 
   return (
     <div className='flex w-3/12 flex-col'>
-    <div className='flex w-full justify-between items-center px-5 py-3'>
+    <div className='flex w-full justify-between items-center px-5 py-3 max-h-[4.75rem] h-[4.75rem] min-h-[4.75rem] box-border'>
       <div className='flex'>
         <Image className='rounded-full w-11 h-11 object-cover object-center' width={1000} height={667} src={'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww'} alt={'user-image'}/>
       </div>

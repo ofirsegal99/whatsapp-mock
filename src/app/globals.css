@@ -16,6 +16,7 @@
   font-style: normal;
   color: black;
   font-size: var(--font-size);
+  box-sizing: border-box;
 }
 body{
   background-color: var(--WDS-neutral-gray-200);
@@ -85,3 +86,22 @@ table {
   #root{
     isolation: isolate;
   }
+/* width */
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(196, 196, 196); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: grey; 
+}

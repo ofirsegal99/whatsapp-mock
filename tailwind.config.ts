@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      backgroundImage:{
+        'chat-background':'url(../styles/assets/chat_background.png)'
+      },
       animation:{
         'backRotation':'backRotation 0.15s ease-in-out',
         'frontRotation':'frontRotation 0.15s ease-in-out',
@@ -27,12 +30,6 @@ const config: Config = {
           '0%':{right:'-1.75rem'},
           '100%':{right:'0'}
         }
-        // 'arrowSectionHover':{
-        //   '0%':{transform:'translateX(0)'},
-        //   '100%':{transform:'translateX(-1.75rem)'}
-        // }
-      },
-      backgroundImage: {
       },
       colors:{
         'WDS-neutral-gray': {

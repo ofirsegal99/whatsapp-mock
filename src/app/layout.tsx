@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en"> 
       <body className='h-dvh'>
       <div className='bg-WDS-emerald-500 h-1/6 absolute top-0 right-0 left-0 z-10'/>
-        <div className='bg-WDS-cool-gray-50 shadow-lg z-20 absolute h-[calc(100%-2.375rem)] w-[calc(100%-2.375rem)] top-1/2 right-1/2 translate-x-1/2 translate-y-[-50%] flex'>
+        <div className=' bg-[#f0f2f5] shadow-lg z-20 absolute h-[calc(100%-2.375rem)] w-[calc(100%-2.375rem)] top-1/2 right-1/2 translate-x-1/2 translate-y-[-50%] flex'>
             <SubContent/>
             <div className='flex w-9/12 border-solid border-l-[0.8px] border-[#d1d7db]'>
               {children}

@@ -28,7 +28,7 @@ import React from 'react'
 //         },
 //     ],
 //     isWholeConversationRead:false,
-//     numberOfUnreadMessages:5,
+//     numberOfUnreadMessages:15,
 //     conversationSettings:{
 //         isMute:true,
 //     }
@@ -37,7 +37,8 @@ import React from 'react'
 const mockConversation = {
     conversationId:'6514654165as4d65sa4d6a5sd4sa65d4ad6sa54das6',
     conversationName:'Shauli',
-    conversationImage:'https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    conversationImage:'https://images.unsplash.com/photo-1682917265558-f3dbf6507e5b?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max',
+    // conversationImage:'https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     conversationMessages:[
         {
             sender:{
@@ -68,7 +69,7 @@ const mockConversation = {
 
 const MessageLink = () => {
   return (
-    <Link className='group h-[5.5rem] gap-4 pr-6 pl-4 flex w-full bg-[#fff] hover:bg-[#f5f6f6]' href={`/Conversation/?=${mockConversation.conversationId}`}>
+    <Link className='group h-[5.5rem] gap-4 pr-6 pl-4 flex w-full bg-[#fff] hover:bg-[#f5f6f6] min-h-[5.5rem]' href={`/conversation/${mockConversation.conversationId}`}>
     <div className='flex justify-center items-center'>
         <Image className=' aspect-square rounded-full object-center object-cover w-14 h-14' alt='conversation user image' src={mockConversation.conversationImage} width={500} height={500}/>
     </div>
@@ -96,7 +97,7 @@ const MessageLink = () => {
             {
                 mockConversation.numberOfUnreadMessages ? 
                 <div className='p-2 rounded-full h-7 min-w-7 flex items-center justify-center bg-[#25d366]'>
-                   <span className='text-[#fff] font-semibold'>
+                   <span className='text-[#fff] font-semibold text-[0.815rem]'>
                          {mockConversation.numberOfUnreadMessages} 
                     </span>
                 </div>

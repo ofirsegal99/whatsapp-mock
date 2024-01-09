@@ -1,7 +1,7 @@
 'use server'
 import React from 'react'
 import Image from 'next/image'
-import WhatsappWelcome from '@/styles/images/whatsapp_welcome.png'
+import WhatsappWelcome from '@/styles/assets/whatsapp_welcome.png'
 const Home = () => {
   return (
     <div className='flex justify-center w-full relative p-[1.75rem]'>

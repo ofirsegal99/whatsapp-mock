@@ -10,7 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantPr
 
 const Button = ({children, className,variant,size, ...props}: ButtonProps) => {
   return (
-    <button className={cn(buttonVariants({default:'primary', variant, size, className}))}>
+    <button className={cn(buttonVariants({default:'primary', variant, size, className}))} {...props}>
         {children}
     </button>
   )
