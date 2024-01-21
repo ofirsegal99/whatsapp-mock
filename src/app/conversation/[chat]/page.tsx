@@ -40,11 +40,23 @@ const Chat:FC<ChatProps> = async ({params}) => {
             </Button>
           </div>
       </header>
-      <div className='flex w-full h-full flex-col justify-between items-center bg-[#fff]'>
-        <div className='flex w-full h-full items-center bg-[#e7e1d6]'>
+      <div className='flex w-full h-full flex-col justify-between items-center bg-[#fff] overflow-hidden'>
+        <div className='flex w-full h-full items-center bg-[#e7e1d6] overflow-hidden'>
           <div className='flex flex-col justify-end w-full h-full items-center bg-chat-background bg-repeat'>
-            <div className='flex flex-col justify-end gap-4 w-full h-full items-center bg-[#5f5748] bg-opacity-[0.2] px-16 py-8'>
+            <div className='flex justify-end gap-4 w-full h-full items-center bg-[#5f5748] bg-opacity-[0.2] px-16 py-8 overflow-y-scroll flex-wrap-reverse flex-row'>
                    <Row variant={'primary'}>
+                    a
+                 </Row>
+                 <Row variant={'secondary'}>
+                   b
+                 </Row>
+                 <Row variant={'primary'}>
+                  This sucks man, hope you get to bed asap!
+                 </Row>
+                 <Row variant={'secondary'}>
+                   {"<3"}
+                 </Row>
+                 <Row variant={'primary'}>
                      Hi Suzi, how are you doing today?
                  </Row>
                  <Row variant={'secondary'}>
@@ -55,6 +67,18 @@ const Chat:FC<ChatProps> = async ({params}) => {
                  </Row>
                  <Row variant={'secondary'}>
                    {"<3"}
+                 </Row>
+                 <Row variant={'primary'}>
+                     Hi Suzi, how are you doing today?
+                 </Row>
+                 <Row variant={'secondary'}>
+                   Shit,I just want to go home mate!
+                 </Row>
+                 <Row variant={'primary'}>
+                  c
+                 </Row>
+                 <Row variant={'secondary'}>
+                   d
                  </Row>
             </div>
           </div>

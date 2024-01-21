@@ -11,7 +11,7 @@ const Home = () => {
             Have you still not downloaded WhatsApp for Windows?
             </h2>
             <p className='text-center text-base'>
-            In the new app for Windows, you can make calls, share your screen, and enjoy a faster user experience - it's worth downloading!
+           {" In the new app for Windows, you can make calls, share your screen, and enjoy a faster user experience - it's worth downloading!"}
             </p>
             <a href="wwww.whatsapp.com" className='rounded-full px-10 py-4 m-3 bg-WDS-green-500 hover:bg-WDS-green-800 text-WDS-white-alpha-default font-semibold hover:-translate-y-1 hover:scale-110 duration-300 transition ease-in-out delay-150'>
                 Download the application
