@@ -5,7 +5,7 @@ type Conversation = {
     createdAt:string;
     participants: Users.id[];
 }
-type Users = {
+type User = {
     id:string;
     nickname:string;
     password:string;
@@ -13,9 +13,9 @@ type Users = {
     phonenumber:string;
     status:string;
 }
-type Messages = {
+type Message = {
     id:string;
     content:string;
     dateOfSent:string;
-    messageSate:string;
+    messageState:string;
 }
