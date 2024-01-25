@@ -1,28 +1,100 @@
 'use client'
-import React, { ChangeEvent, useState } from 'react'
+import { submitLogin } from '@/utils/submitLogin'
+import React, { ChangeEvent, useEffect, useState } from 'react'
+import { toast } from 'sonner'
+
+type EmailRules = {
+    isEmailValid:boolean
+}
+
 
 const Form = () => {
+    const [error,setError] = useState<string | undefined>(undefined);
     const [emailInputValue,setEmailInputValue] = useState<string>('');
     const [passwordInputValue,setPasswordInputValue] = useState<string>('');
     const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+
+    const [emailRules,setEmailRules] = useState<EmailRules>({
+        isEmailValid:false
+    })
+
+    function handleEmailChange(value:string){
+        setEmailInputValue(value);
+        setEmailRules({
+            ...emailRules,
+            isEmailValid:checkForEmailValidation(value)
+        });
+    }
+
+   function areInputsValid(){
+    return(
+        passwordInputValue.length > 0 &&
+        emailRules.isEmailValid
+    )
+   } 
+
+   function checkForEmailValidation(value:string){
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const emailValidationTest = emailRegex.test(value);
+    return emailValidationTest;
+}
+useEffect(() => {
+    if(!!error){
+        toast.error(error)
+        setError(undefined)
+    }
+},[error])
   return (
-    <form className='pt-48 flex flex-col gap-4'>
-        <div className='flex bg-WDS-sky-blue-75 w-full px-5 rounded-md'>
-            <input value={emailInputValue} onChange={(e:ChangeEvent<HTMLInputElement>) => {setEmailInputValue(e.target.value)}} className=' placeholder-WDS-warm-gray-500 outline-none bg-transparent text-base font-medium py-3 w-full' placeholder='Enter Email' type="email" />
+    <form 
+    onSubmit={
+        (e) => {
+            e.preventDefault(); 
+            submitLogin({
+                password:passwordInputValue,
+                email:emailInputValue
+            }).then((data) => {
+                setError(data?.error);
+            })
+        }
+    }
+    className='pt-48 flex flex-col gap-4'>
+            <div className={` ${emailInputValue.length === 0 || emailRules.isEmailValid ? 'bg-WDS-sky-blue-75':'bg-WDS-red-75'} flex  w-full px-5 rounded-md`}>
+                <input value={emailInputValue} onChange={(e:ChangeEvent<HTMLInputElement>) => {handleEmailChange(e.target.value)}} className={`${emailRules.isEmailValid ? 'text-WDS-sky-blue-500':'text-WDS-red-500' } placeholder-WDS-warm-gray-500 outline-none bg-transparent text-base font-medium py-3 w-full`} placeholder='Enter Email' type="email" />
+                {
+                    emailInputValue.length > 0 ? 
+                    <button onClick={(e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {e.preventDefault();setEmailInputValue('')}} className=' flex justify-center items-center p-1'>
+                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3.5" y="3.5" width="17.5" height="17.5" rx="8.75" stroke="#667085"/>
+                            <path d="M14.7946 10.0021L10.0026 14.7941" stroke="#667085" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M14.796 14.797L10 10" stroke="#667085" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>  
+                     </button>
+                    :
+                    <>
+                    </>
+                }
+            </div>
             {
-                emailInputValue.length > 0 ? 
-                <button onClick={(e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {e.preventDefault();setEmailInputValue('')}} className=' flex justify-center items-center p-1'>
-                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="3.5" y="3.5" width="17.5" height="17.5" rx="8.75" stroke="#667085"/>
-                        <path d="M14.7946 10.0021L10.0026 14.7941" stroke="#667085" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M14.796 14.797L10 10" stroke="#667085" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>  
-                 </button>
-                :
-                <>
-                </>
+                emailInputValue.length > 0 && 
+                <div className=' flex gap-1 flex-col items-start justify-start'>
+                    {
+                        emailRules.isEmailValid ? 
+                        <div className='flex items-center gap-2'>
+                        <svg   className='fill-WDS-green-500' xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+                        <span  className='text-sm text-WDS-green-500 font-semibold'>
+                            Email should be in the currect format.
+                        </span>
+                        </div>
+                        :
+                        <div className='flex items-center gap-2'>
+                            <svg className='fill-WDS-red-500' xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                        <span className=' text-sm text-WDS-red-500 font-semibold'>
+                            Email should be in the currect format.
+                        </span>
+                        </div>
+                    }
+                </div>
             }
-        </div>
         <div className='flex bg-WDS-sky-blue-75 w-full px-5 rounded-md'>
             <input
              value={passwordInputValue}
@@ -53,7 +125,11 @@ const Form = () => {
             </button>
         </div>
         <div className='flex w-full flex-col gap-12'>
-            <input className=' cursor-pointer flex w-full p-5 text-WDS-white-alpha-default tracking-widest bg-WDS-sky-blue-400 font-bold rounded-md justify-center items-center shadow-md shadow-WDS-sky-blue-200' value='Sign In' type="submit" />
+            <input 
+            className='cursor-pointer flex w-full p-5 text-WDS-white-alpha-default tracking-widest bg-WDS-sky-blue-400 font-bold rounded-md justify-center items-center shadow-md shadow-WDS-sky-blue-20 disabled:opacity-20 transition-all disabled:pointer-events-none'
+            value='Sign In' 
+            type="submit"
+            disabled={!areInputsValid()} />
             <div className='flex w-full justify-center items-center relative'>
                 <div className='w-full bg-WDS-neutral-gray-300 h-[0.05rem]'/>  
                 <span className='absolute p-3 bg-[#F6F6F6] tracking-wider font-medium text-xs text-WDS-neutral-gray-300'>

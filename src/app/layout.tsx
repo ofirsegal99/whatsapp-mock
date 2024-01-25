@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import SubContent from '@/layout/SubContent'
+import { Toaster } from 'sonner'
 
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en"> 
       <body className='h-dvh'>
+      <Toaster richColors/>
       <div className='bg-WDS-emerald-500 h-1/6 absolute top-0 right-0 left-0 z-10'/>
         <div className=' bg-[#f0f2f5] shadow-lg z-20 absolute h-[calc(100%-2.375rem)] w-[calc(100%-2.375rem)] top-1/2 right-1/2 translate-x-1/2 translate-y-[-50%] flex'>
             <SubContent/>
