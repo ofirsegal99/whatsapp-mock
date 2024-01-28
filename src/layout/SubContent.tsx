@@ -1,8 +1,7 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { FC, ReactNode, useEffect, useRef, useState } from 'react'
 import Button from '@/components/Button'
 import Image from 'next/image'
-import ContentList from '@/layout/ContentList'
 
 type Primary = {
   type:'primary';
@@ -17,9 +16,11 @@ type Filtered = {
 
 type listState = Primary | Filtered;
 
+interface SubContentProps{
+  children:ReactNode;
+}
 
-
-const SubContent = () => {
+const SubContent:FC<SubContentProps> = ({children}) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [isFocused,setIsFocused] = useState<boolean>(false)
     const [listState,setListState] = useState<listState>({type:'primary',placeholder:'You can search or start a new chat'})
@@ -113,7 +114,9 @@ const SubContent = () => {
             </button>
          </div>
      </div>
-     <ContentList/>
+     {
+      children
+     }
   </div>
   )
 }

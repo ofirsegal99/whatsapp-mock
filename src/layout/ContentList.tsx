@@ -1,7 +1,14 @@
+'use client'
 import MessageLink from '@/components/MessageLink'
-import React from 'react'
+import { useSession } from 'next-auth/react'
+import React, { FC } from 'react'
 
-const ContentList = () => {
+
+
+const ContentList:FC = () => {
+      const {data:session,status} = useSession()
+      console.log(session);
+      console.log(status);
   return (
     <div className='bg-[#fff] flex flex-col h-full overflow-y-scroll flex-nowrap'>
         <MessageLink/>
