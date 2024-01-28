@@ -14,12 +14,12 @@ type User = {
     status:string;
 }
 
-// type RegisterScheme = {
-//     nickname:string;
-//     password:string;
-//     email:string;
-//     phonenumber:string;
-// }
+type RegisterScheme = {
+    nickname:string;
+    password:string;
+    email:string;
+    phonenumber:string;
+}
 
 // type LoginScheme = {
 //     password:string;
