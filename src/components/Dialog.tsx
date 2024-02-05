@@ -1,6 +1,11 @@
 'use client'
+import { getUsersWithoutConversation } from '@/actions/user';
 import { Dialog as Headless_UI_Dialog, Transition } from '@headlessui/react'
-import { FC, Fragment, ReactNode, useState } from 'react'
+import { useSession } from 'next-auth/react';
+import Image from 'next/image';
+import avatarPlaceholder from '@/styles/assets/avatar-placeholder.png'
+import React from 'react';
+import { FC, Fragment, ReactNode, useEffect, useState } from 'react'
 
 interface DialogProps{
     children:ReactNode;
@@ -17,6 +22,60 @@ const Dialog:FC<DialogProps> = ({children,title}) => {
   function openModal() {
     setIsOpen(true)
   }
+
+
+function reorder(list:Contact[]){
+  const sortedList:Contact[] = list.slice().sort((a, b) => a.name.localeCompare(b.name));
+  return sortedList;
+}
+
+function addLetter(list:Contact[]):ContactWithLetter[]{
+  const result: ContactWithLetter[] = [];
+  let currentLetter = '';
+
+  for (const contact of list) {
+    const firstLetter = contact.name.charAt(0).toUpperCase();
+
+    if (firstLetter !== currentLetter) {
+      result.push({ letter: firstLetter, type:'Letter'});
+      currentLetter = firstLetter;
+    }
+
+    result.push(contact);
+  }
+  const addedLettersList:ContactWithLetter[] = result
+  return addedLettersList;
+}
+
+  function reorderAndAddLetters(list:Contact[]){
+    return addLetter(reorder(list))
+  }
+
+  const {data:session} = useSession();
+  const [users, setUsers] = useState<ContactWithLetter[] | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try{
+        const result = await getUsersWithoutConversation(session?.user?.email);
+        if(!result) return null;
+         const usersWithContactType:Contact[] = result.map((user) => ({
+           ...user,
+           type: 'Contact',
+         }));
+        setUsers(reorderAndAddLetters(usersWithContactType));
+      }
+      catch(error){
+        console.log('Error fetching data',error)
+      }
+    };
+    fetchData();
+    return (
+      () => {
+        setUsers(null);
+      }
+    )
+  },[])
 
   return (
     <>
@@ -57,7 +116,7 @@ const Dialog:FC<DialogProps> = ({children,title}) => {
                           className="inline-flex justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium focus:outline-none"
                           onClick={closeModal}
                         >
-                             <svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24"><title>back</title><path fill="white" d="M12,4l1.4,1.4L7.8,11H20v2H7.8l5.6,5.6L12,20l-8-8L12,4z"></path></svg>
+                             <svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enableBackground="new 0 0 24 24"><title>back</title><path fill="white" d="M12,4l1.4,1.4L7.8,11H20v2H7.8l5.6,5.6L12,20l-8-8L12,4z"></path></svg>
                         </button>
                         <Headless_UI_Dialog.Title
                         as="h3"
@@ -66,13 +125,45 @@ const Dialog:FC<DialogProps> = ({children,title}) => {
                         {title}    
                        </Headless_UI_Dialog.Title>
                     </div>
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Your payment has been successfully submitted. We’ve sent
-                      you an email with all of the details of your order.
-                    </p>
-                  </div>
-                  <div className="mt-4">
+                  <div className=" flex flex-col py-4 h-full">
+                    <div className="pl-4 py-2 text-base font-normal tracking-wide text-WDS-green-600">
+                    Contacts on WHATSAPP
+                    </div>
+                    <div className=' flex flex-col'>
+                      {users?.map((item,index) => {
+                        return(
+                          <React.Fragment key={index}>
+                            {
+                              item.type === 'Letter' ? 
+                              (
+                                <div className='flex items-center justify-start divide-y-reverse divide-y divide-WDS-cool-gray-100 divide-solid pl-4 gap-4'>
+                                  <div className='flex flex-col px-4 py-4 text-lg text-WDS-warm-gray-400 justify-start items-start font-medium w-full'>
+                                    {item.letter}
+                                  </div>
+                                </div>
+                              )
+                              :
+                              (
+                               <button className='flex items-center justify-start divide-y-reverse divide-y divide-WDS-cool-gray-100 divide-solid  hover:bg-WDS-cool-gray-100 pl-4 gap-4'>
+                                 <div>
+                                   <Image className='rounded-full w-14 h-14 object-cover object-center' src={item.image || avatarPlaceholder } height={200} width={200} alt={`${item.name}-image`}/>
+                                 </div>
+                                 <div className='flex flex-col py-4 justify-start items-start w-full'>
+                                    <p className=' text-base text-WDS-warm-gray-1000 font-medium'>
+                                      {item.name}
+                                    </p>
+                                   <p className=' text-sm text-WDS-neutral-gray-400'>
+                                      {'Hey there! I am using Whatsapp.'}
+                                    </p>
+                                 </div>
+                               </button>
+                              )
+                            }
+                            
+                          </React.Fragment>
+                        )
+                      })}
+                    </div>
                   </div>
                 </Headless_UI_Dialog.Panel>
               </Transition.Child>

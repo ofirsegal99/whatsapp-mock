@@ -1,5 +1,5 @@
 'use client'
-import { submitRegister } from '@/utils/submitRegister'
+import { submitRegister } from '@/actions/submitRegister'
 import Link from 'next/link'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'sonner'

@@ -1,5 +1,5 @@
 'use client'
-import { submitLogin } from '@/utils/submitLogin'
+import { submitLogin } from '@/actions/submitLogin'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'sonner'
 

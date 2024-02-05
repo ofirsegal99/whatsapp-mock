@@ -10,6 +10,8 @@ export const {
 } = NextAuth({
 
     adapter:PrismaAdapter(db),
-    session: {strategy:'jwt'},
+    session: {
+        strategy:'jwt'
+    },
     ...authConfig,
 });

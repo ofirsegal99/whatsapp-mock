@@ -1,3 +1,11 @@
+// type Conversation = {
+//     id:string;
+//     messages : Messages[];
+//     picture:string;
+//     createdAt:string;
+//     participants: Users.id[];
+// }
+
 type Conversation = {
     id:string;
     messages : Messages[];
@@ -14,6 +22,8 @@ type User = {
     status:string;
 }
 
+
+
 type RegisterScheme = {
     nickname:string;
     password:string;
@@ -21,10 +31,19 @@ type RegisterScheme = {
     phonenumber:string;
 }
 
-// type LoginScheme = {
-//     password:string;
-//     email:string;
-// }
+type Contact = {
+    name:string;
+    image:string | null;
+    id:string;
+    email:string
+    phonenumber:string;
+    type:'Contact';
+}
+type ContactWithLetter = {
+    letter:string;
+    type:'Letter';
+} | Contact;
+
 
 type Message = {
     id:string;
