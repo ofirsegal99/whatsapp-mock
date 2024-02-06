@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import avatarPlaceholder from '@/styles/assets/avatar-placeholder.png'
 import React from 'react';
-import { FC, Fragment, ReactNode, useEffect, useState } from 'react'
+import { FC, Fragment, ReactNode, useLayoutEffect, useState } from 'react'
 
 interface DialogProps{
     children:ReactNode;
@@ -54,7 +54,7 @@ function addLetter(list:Contact[]):ContactWithLetter[]{
   const {data:session} = useSession();
   const [users, setUsers] = useState<ContactWithLetter[] | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const fetchData = async () => {
       try{
         const result = await getUsersWithoutConversation(session?.user?.email);
