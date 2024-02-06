@@ -1,7 +1,8 @@
 'use client'
-import Image from 'next/image'
+import { Conversation } from '@prisma/client'
 import Link from 'next/link'
-import React from 'react'
+import React, { FC } from 'react'
+import Avatar from '@/components/Avatar'
 
 // const mockConversation = {
 //     conversationId:'6514654165as4d65sa4d6a5sd4sa65d4ad6sa54das6',
@@ -70,12 +71,17 @@ const mockConversation = {
     }
 }
 
+interface MessageLinkProps{
+    conversation:Conversation;
+}
 
-const MessageLink = () => {
+const MessageLink:FC<MessageLinkProps> = ({conversation}) => {
+    console.log(conversation)
   return (
-    <Link className='group h-[5.5rem] gap-4 pr-6 pl-4 flex w-full bg-[#fff] hover:bg-[#f5f6f6] min-h-[5.5rem]' href={`/conversation/${mockConversation.conversationId}`}>
+    <Link className='group h-[5.5rem] gap-4 pr-6 pl-4 flex w-full bg-[#fff] hover:bg-[#f5f6f6] min-h-[5.5rem]' href={`/conversation/${conversation.id}`}>
     <div className='flex justify-center items-center'>
-        <Image className=' aspect-square rounded-full object-center object-cover w-14 h-14' alt='conversation user image' src={mockConversation.conversationImage} width={500} height={500}/>
+        <Avatar src={conversation.picture} size={50} alt={`conversation user image`}/>
+        {/* <Image className=' aspect-square rounded-full object-center object-cover w-14 h-14' alt='conversation user image' src={mockConversation.conversationImage} width={500} height={500}/> */}
     </div>
     <div className='flex w-[calc(100%-4.5rem)] justify-center flex-col border-solid border-b-[0.8px] border-[#d1d7db] overflow-hidden'>
         <div className='flex w-full items-center justify-between'>

@@ -21,7 +21,6 @@ const ContentList:FC<ContentListProps> = ({children}) => {
                         if(!user) return setConversations(null);
                         let conv:Conversation[] = await getConversations(user.id);
                         if(!conv) return setConversations([]);
-                        console.log(conv)
                         return setConversations(conv);
                   }
                   catch(error){
@@ -64,7 +63,7 @@ const ContentList:FC<ContentListProps> = ({children}) => {
             <React.Fragment>
                   {conversations.map((conversation) => {
                         return(
-                               <MessageLink key={conversation.id}/>
+                               <MessageLink conversation={conversation} key={conversation.id}/>
                         )
                   })}
             </React.Fragment>

@@ -6,13 +6,13 @@
 //     participants: Users.id[];
 // }
 
-type Conversation = {
-    id:string;
-    messages : Messages[];
-    picture:string;
-    createdAt:string;
-    participants: Users.id[];
-}
+// type Conversation = {
+//     id:string;
+//     messages : Messages[];
+//     picture:string;
+//     createdAt:string;
+//     participants: Users.id[];
+// }
 type User = {
     id:string;
     nickname:string;

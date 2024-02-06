@@ -14,7 +14,7 @@ model Conversation {
   messages       Message[]  @relation("conversationMessages") // Specify the relation name
   picture        String?
   createdAt      DateTime   @default(now())
-  participants   User[] 
+  participants   User[]
 }
 
 
@@ -35,5 +35,5 @@ model Message {
   content        String
   dateOfSent     DateTime   @default(now())
   messageState   String
-  conversation   Conversation? @relation("conversationMessages", fields: [id], references: [id])
+  conversation   Conversation @relation("conversationMessages", fields: [id], references: [id])
 }

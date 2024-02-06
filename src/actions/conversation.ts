@@ -15,10 +15,7 @@ export const getConversations = async (currentUserId:string): Promise<Conversati
                 }
             }
         },
-        select:{
-            id:true,
-            createdAt:true,
-            picture:true,
+        include:{
             messages:true,
             participants:true,
         }
