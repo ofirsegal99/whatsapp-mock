@@ -16,7 +16,8 @@ const config: Config = {
       animation:{
         'backRotation':'backRotation 0.15s ease-in-out',
         'frontRotation':'frontRotation 0.15s ease-in-out',
-        'arrowSectionHover':'arrowSectionHover 0.15s ease-in-out'
+        'arrowSectionHover':'arrowSectionHover 0.15s ease-in-out',
+        'loading':'loading 1.2s linear infinite'
       },
       keyframes:{
         'backRotation':{
@@ -30,6 +31,10 @@ const config: Config = {
         'arrowSectionHover':{
           '0%':{right:'-1.75rem'},
           '100%':{right:'0'}
+        },
+        'loading':{
+          '0%':{opacity:'1'},
+          '100%':{opacity:'0'}
         }
       },
       colors:{

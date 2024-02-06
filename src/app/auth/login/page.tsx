@@ -23,7 +23,7 @@ const Login = async () => {
                  </h3>
                  <p className='flex flex-col gap-1'>
                    <span className=' text-sm font-semibold'>
-                   If you don't have an account 
+                   {"If you don't have an account"} 
                    </span>
                    <span className='text-sm font-semibold flex gap-1'>
                    you can 

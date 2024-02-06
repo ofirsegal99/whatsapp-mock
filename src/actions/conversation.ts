@@ -1,11 +1,12 @@
 'use server'
 import { db } from "@/lib/db";
+import { Conversation } from "@prisma/client";
 
 export const createConversation = async () => {
     return null;
 }
 
-export const getConversations = async (currentUserId:string) => {
+export const getConversations = async (currentUserId:string): Promise<Conversation[]> => {
     const conversations = await db.conversation.findMany({
         where:{
             participants:{
@@ -22,6 +23,6 @@ export const getConversations = async (currentUserId:string) => {
             participants:true,
         }
     })
-    if(!conversations)return null;
+    if(!conversations)return [];
     return conversations;
 }
