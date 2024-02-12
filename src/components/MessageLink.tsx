@@ -1,8 +1,9 @@
 'use client'
-import { Conversation } from '@prisma/client'
 import Link from 'next/link'
 import React, { FC } from 'react'
 import Avatar from '@/components/Avatar'
+import { ConversationWithEverything } from '../../types'
+
 
 // const mockConversation = {
 //     conversationId:'6514654165as4d65sa4d6a5sd4sa65d4ad6sa54das6',
@@ -72,11 +73,10 @@ const mockConversation = {
 }
 
 interface MessageLinkProps{
-    conversation:Conversation;
+    conversation:ConversationWithEverything;
 }
 
 const MessageLink:FC<MessageLinkProps> = ({conversation}) => {
-    console.log(conversation)
   return (
     <Link className='group h-[5.5rem] gap-4 pr-6 pl-4 flex w-full bg-[#fff] hover:bg-[#f5f6f6] min-h-[5.5rem]' href={`/conversation/${conversation.id}`}>
     <div className='flex justify-center items-center'>

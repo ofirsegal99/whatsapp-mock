@@ -13,6 +13,8 @@
 //     createdAt:string;
 //     participants: Users.id[];
 // }
+import { Conversation, Prisma } from '@prisma/client'
+
 type User = {
     id:string;
     nickname:string;
@@ -22,7 +24,12 @@ type User = {
     status:string;
 }
 
-
+type ConversationWithEverything = Prisma.ConversationGetPayload<{
+    include:{
+        messages:true,
+        participants:true
+    }
+}>
 
 type RegisterScheme = {
     nickname:string;

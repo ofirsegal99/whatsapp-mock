@@ -2,9 +2,10 @@
 import { getConversations } from '@/actions/conversation'
 import { getUser } from '@/actions/user'
 import MessageLink from '@/components/MessageLink'
-import { Conversation } from '@prisma/client'
 import { useSession } from 'next-auth/react'
 import React, { FC, ReactNode, useLayoutEffect, useState } from 'react'
+import { ConversationWithEverything } from '../../types'
+import { User } from '@prisma/client'
 
 
 interface ContentListProps{
@@ -13,13 +14,13 @@ interface ContentListProps{
 
 const ContentList:FC<ContentListProps> = ({children}) => {
       const {data:session} = useSession();
-      const [conversations,setConversations] = useState<Conversation[] | null>(null);
+      const [conversations,setConversations] = useState<ConversationWithEverything[] | null>(null);
       useLayoutEffect(() => {
             const fetchData = async () => {
                   try{
                         let user = await getUser(session?.user?.email);
                         if(!user) return setConversations(null);
-                        let conv:Conversation[] = await getConversations(user.id);
+                        let conv:ConversationWithEverything[] = await getConversations(user.id);
                         if(!conv) return setConversations([]);
                         return setConversations(conv);
                   }

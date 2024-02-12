@@ -1,5 +1,6 @@
 'use server'
 import { db } from "@/lib/db";
+import { ConversationWithEverything } from "../../types";
 
 /* 
 this function finds all users who do not have ocnversation with the given user id.
