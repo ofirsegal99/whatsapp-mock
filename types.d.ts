@@ -1,18 +1,3 @@
-// type Conversation = {
-//     id:string;
-//     messages : Messages[];
-//     picture:string;
-//     createdAt:string;
-//     participants: Users.id[];
-// }
-
-// type Conversation = {
-//     id:string;
-//     messages : Messages[];
-//     picture:string;
-//     createdAt:string;
-//     participants: Users.id[];
-// }
 import { Conversation, Prisma } from '@prisma/client'
 
 type User = {
@@ -30,6 +15,17 @@ type ConversationWithEverything = Prisma.ConversationGetPayload<{
         participants:true
     }
 }>
+
+type participant = {
+    id: string;
+    name: string;
+    email: string;
+    emailVerified: Date | null;
+    phonenumber: string;
+    status: string | null;
+    password: string | null;
+    image: string | null;
+};
 
 type RegisterScheme = {
     nickname:string;

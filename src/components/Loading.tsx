@@ -1,7 +1,7 @@
-'use server'
+'use client'
 import React from 'react'
 
-const Loading = async () => {
+const Loading = () => {
   return (
     <div className=" text-[rgb(221, 255, 204)] relative inline-block w-20 h-20">
         <div style={{animationDelay:'-1.1s'}} className='after:bg-[#80c25f] after:w-[0.35rem] after:h-5 after:rounded-[20%] block after:absolute after:top-1 after:left-10 origin-[40px_40px] animate-loading transform rotate-[0deg]'></div>

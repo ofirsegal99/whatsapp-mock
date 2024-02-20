@@ -1,4 +1,4 @@
-'use server'
+'use client'
 import cn from '@/utils/cn';
 import { VariantProps, cva } from 'class-variance-authority'
 import React, { HTMLAttributes, ReactNode } from 'react'
@@ -7,7 +7,7 @@ interface RowProps extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof b
     children:ReactNode;
 }
 
-const Row = async ({variant,className,children,...props} : RowProps) => {
+const Row = ({variant,className,children,...props} : RowProps) => {
   return (
     <div className={cn(['flex flex-col w-full',orientationVariants({variant})])} {...props}>
         <div className={cn(['max-w-[65%] flex flex-col gap-1 rounded-lg py-2 px-3 text-base w-fit relative',borderRadiusVariants({variant}),backgroundColorVariants({variant})])}>

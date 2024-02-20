@@ -6,7 +6,7 @@ import cn from '@/utils/cn';
 
 
 interface AvatarProps{
-    src:string|null;
+    src:string|null|undefined;
     size:number;
     alt:string;
     className?:string;

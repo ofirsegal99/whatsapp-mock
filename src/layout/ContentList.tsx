@@ -5,7 +5,6 @@ import MessageLink from '@/components/MessageLink'
 import { useSession } from 'next-auth/react'
 import React, { FC, ReactNode, useLayoutEffect, useState } from 'react'
 import { ConversationWithEverything } from '../../types'
-import { User } from '@prisma/client'
 
 
 interface ContentListProps{
@@ -37,7 +36,6 @@ const ContentList:FC<ContentListProps> = ({children}) => {
       },[])
       return (
     <div className='bg-[#fff] flex flex-col h-full overflow-y-scroll flex-nowrap'>
-
       {
             conversations === null ? 
             <div className='flex flex-col gap-3 w-full justify-center items-center h-full'>

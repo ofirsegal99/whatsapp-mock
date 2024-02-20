@@ -1,8 +1,10 @@
 'use client'
 import Link from 'next/link'
-import React, { FC } from 'react'
+import React, { FC, useLayoutEffect, useState } from 'react'
 import Avatar from '@/components/Avatar'
-import { ConversationWithEverything } from '../../types'
+import { ConversationWithEverything, participant } from '../../types'
+import { useSession } from 'next-auth/react'
+import { getPartner, getUser } from '@/actions/user'
 
 
 // const mockConversation = {
@@ -37,15 +39,12 @@ import { ConversationWithEverything } from '../../types'
 // }
 
 const mockConversation = {
-    ParticipantsId:[
+    participants:[
         '13a2s1ds6a5d1as6d1as3d2a1s3d1sa3da1s5d6as1',
         '1354a6sd54sa6d8sa4d9sa4d9sad8sa9d7sad9sa4d',
     ],
-    conversationId:'6514654165as4d65sa4d6a5sd4sa65d4ad6sa54das6',
-    conversationName:'Shauli',
-    conversationImage:'https://images.unsplash.com/photo-1682917265558-f3dbf6507e5b?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max',
-    // conversationImage:'https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    conversationMessages:[
+    id:'6514654165as4d65sa4d6a5sd4sa65d4ad6sa54das6',
+    messages:[
         {
             sender:{
                 id:'13a2s1ds6a5d1as6d1as3d2a1s3d1sa3da1s5d6as1',
@@ -77,24 +76,57 @@ interface MessageLinkProps{
 }
 
 const MessageLink:FC<MessageLinkProps> = ({conversation}) => {
+    const {data:session} = useSession();
+    const [partner,setPartner] = useState<participant|null>(null)
+    useLayoutEffect(() => {
+        const fetchData = async () => {
+              try{
+                    let user = await getUser(session?.user?.email);
+                    if(!user) return setPartner(null);
+                    let curr:participant|null = await getPartner(user.id,conversation.participants);
+                    if(!curr) return setPartner(null);
+                    return setPartner(curr);
+              }
+              catch(error){
+                    console.log('Error fetching data', error)
+              }
+        };
+        fetchData();
+        return(
+              () => {
+                    setPartner(null);
+              }
+        )
+  },[])
   return (
     <Link className='group h-[5.5rem] gap-4 pr-6 pl-4 flex w-full bg-[#fff] hover:bg-[#f5f6f6] min-h-[5.5rem]' href={`/conversation/${conversation.id}`}>
     <div className='flex justify-center items-center'>
-        <Avatar src={conversation.picture} size={50} alt={`conversation user image`}/>
-        {/* <Image className=' aspect-square rounded-full object-center object-cover w-14 h-14' alt='conversation user image' src={mockConversation.conversationImage} width={500} height={500}/> */}
+        <Avatar src={partner?.image} size={50} alt={`conversation user image`}/>
     </div>
     <div className='flex w-[calc(100%-4.5rem)] justify-center flex-col border-solid border-b-[0.8px] border-[#d1d7db] overflow-hidden'>
         <div className='flex w-full items-center justify-between'>
             <h4 className={`${mockConversation.isWholeConversationRead ? 'font-normal':'font-bold'} truncate`}>
-                {mockConversation.conversationName}
+                {partner?.name || 'nickname placeholder'}
             </h4>
             <span className={`${mockConversation.isWholeConversationRead ?' text-slate-950 font-normal' :'text-[#1fa855] font-semibold'} text-sm`}>
-            {mockConversation.conversationMessages[mockConversation.conversationMessages.length-1].date}
+            {
+              conversation.messages.length === 0 ? 
+              ''
+              :
+                <span className={`${mockConversation.isWholeConversationRead ?' text-slate-950 font-normal' :'text-[#1fa855] font-semibold'} text-sm`}>
+                {`${conversation.messages[conversation.messages.length-1].dateOfSent}`}
+                </span>
+            }
             </span>
         </div>
         <div className='flex w-full items-center justify-between  h-8 relative'>
             <p className={`${mockConversation.isWholeConversationRead ? 'font-normal':'font-semibold'} text-sm  truncate`}>
-            {mockConversation.conversationMessages[mockConversation.conversationMessages.length-1].content}
+            {
+                conversation.messages.length === 0 ? 
+                <span className=' text-WDS-neutral-gray-300'>No messages yet</span>
+                :
+                conversation.messages[conversation.messages.length-1].content
+            }
             </p>
             <div className='flex items-center gap-2  pl-2 bg-[#fff] group-hover:bg-[#f5f6f6] absolute -right-7 group-hover:right-0 group-hover:animate-arrowSectionHover'>
             {

@@ -11,7 +11,7 @@ generator client {
 
 model Conversation {
   id             String        @id @default(cuid())
-  messages       Message[]  @relation("conversationMessages") // Specify the relation name
+  messages       Message[]   // Specify the relation name
   picture        String?
   createdAt      DateTime   @default(now())
   participants   User[]
@@ -28,12 +28,16 @@ model User {
   password String?
   image String?
   conversations  Conversation[] 
+  messages Message[]
 }
 
 model Message {
   id             String        @id @default(cuid())
   content        String
   dateOfSent     DateTime   @default(now())
-  messageState   String
-  conversation   Conversation @relation("conversationMessages", fields: [id], references: [id])
+  senderId String 
+  sender User @relation(fields: [senderId], references: [id])
+  isRead   Boolean @default(false)
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId],references: [id])
 }

@@ -1,6 +1,6 @@
 'use server'
 import { db } from "@/lib/db";
-import { ConversationWithEverything } from "../../types";
+import { ConversationWithEverything, participant } from "../../types";
 
 /* 
 this function finds all users who do not have ocnversation with the given user id.
@@ -64,4 +64,10 @@ if (!user) {
   throw new Error('User not found');
 }
   return user;
+}
+
+export const getPartner = async (userId:string,participants:participant[]):Promise<participant | null> => {
+  const partner:participant | undefined = participants.find(participant => participant.id !== userId);
+  if(!partner) return null;
+  return partner
 }
