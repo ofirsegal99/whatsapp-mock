@@ -12,7 +12,10 @@ interface FooterProps{
 const Footer:FC<FooterProps> = ({conversation,userId}) => {
     const [value,setValue] = useState<string>('');
     function handleSubmit(){
-        addMessageToConversation(value,conversation?.id || null,userId);
+       const newMessage = addMessageToConversation(value,conversation?.id || null,userId);
+        if (newMessage !== null) {
+            setValue('');
+        }
     }
   return (
     <footer className='flex w-full gap-1 items-center px-5 py-3 max-h-[4.75rem] h-[4.75rem] min-h-[4.75rem] box-border bg-[#f0f2f5]'> 

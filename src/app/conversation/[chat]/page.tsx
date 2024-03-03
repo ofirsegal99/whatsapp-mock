@@ -78,15 +78,16 @@ const Chat:FC<ChatProps> = ({params}) => {
       <div className='flex w-full h-full flex-col justify-between items-center bg-[#fff] overflow-hidden'>
         <div className='flex w-full h-full items-center bg-[#e7e1d6] overflow-hidden'>
           <div className='flex flex-col justify-end w-full h-full items-center bg-chat-background bg-repeat'>
-            <div className='flex justify-end gap-4 w-full h-full items-center bg-[#5f5748] bg-opacity-[0.2] px-16 py-8 overflow-y-scroll flex-wrap-reverse flex-row'>
+            <div className='flex justify-end gap-4 w-full h-full bg-[#5f5748] bg-opacity-[0.2] px-16 py-8 overflow-y-scroll flex-wrap-reverse flex-row'>
               {!conversation ?
-                <div className='flex w-full justify-center'>
-                <Loading/>
-              </div>
-              :
-              conversation.messages.map((message) => {
+            <div className='flex w-full justify-center items-center h-full'>
+            <Loading/>
+          </div>
+              :  
+              conversation.messages.toReversed().map((message) => {
+                let variant:'primary'|'secondary' = (message.senderId === userId) ? 'primary' : 'secondary';
                 return(
-                <Row key={message.id} variant={'primary'}>
+                <Row message={message} key={message.id} variant={variant}>
                     {message.content}
                 </Row>
                 )

@@ -38,7 +38,7 @@ try{
           },
     })
     if (!conversation) {
-        throw new Error('Conversation not found');
+        return null;
       }
     const newMessage = await db.message.create({
         data:{
@@ -49,6 +49,6 @@ try{
     });
     return newMessage;
 } catch (error){
-    throw error;
+    return null;
 }
 }
