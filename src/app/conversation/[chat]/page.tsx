@@ -49,10 +49,6 @@ const Chat:FC<ChatProps> = ({params}) => {
       )
 },[])
 
-useEffect(() => {
-  console.log(conversation)
-},[conversation])
-
   return (
     <div className='flex flex-col w-full'>
       <header className='flex w-full justify-between items-center px-5 py-3 max-h-[4.75rem] h-[4.75rem] min-h-[4.75rem] box-border bg-[#f0f2f5]'>
