@@ -1,5 +1,5 @@
 'use client'
-import React, { FC, useLayoutEffect, useState } from 'react'
+import React, { FC, useEffect, useLayoutEffect, useState } from 'react'
 import Button from '@/components/Button';
 import Row from '@/components/Row';
 import Footer from '@/app/conversation/[chat]/Footer'
@@ -48,6 +48,11 @@ const Chat:FC<ChatProps> = ({params}) => {
             }
       )
 },[])
+
+useEffect(() => {
+  console.log(conversation)
+},[conversation])
+
   return (
     <div className='flex flex-col w-full'>
       <header className='flex w-full justify-between items-center px-5 py-3 max-h-[4.75rem] h-[4.75rem] min-h-[4.75rem] box-border bg-[#f0f2f5]'>
@@ -96,7 +101,7 @@ const Chat:FC<ChatProps> = ({params}) => {
             </div>
           </div>
         </div>
-              <Footer userId={userId} conversation={conversation}/>
+              <Footer userId={userId} setConversation={setConversation} conversation={conversation}/>
       </div>
     </div>
   )

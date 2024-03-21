@@ -7,15 +7,32 @@ import { addMessageToConversation } from '@/actions/message';
 interface FooterProps{
     conversation:ConversationWithEverything | null;
     userId:string | null;
+    setConversation: React.Dispatch<React.SetStateAction<ConversationWithEverything | null>>
 }
 
-const Footer:FC<FooterProps> = ({conversation,userId}) => {
+const Footer:FC<FooterProps> = ({conversation,userId,setConversation}) => {
     const [value,setValue] = useState<string>('');
     function handleSubmit(){
-       const newMessage = addMessageToConversation(value,conversation?.id || null,userId);
+    addMessageToConversation(value,conversation?.id || null,userId)
+    .then((newMessage) => {
         if (newMessage !== null) {
-            setValue('');
+            setConversation((prevConversation:ConversationWithEverything | null) => {
+                if (!prevConversation) {
+                    return prevConversation; // Return the previous conversation if it's null or undefined
+                }
+                const updatedConversation = {
+                    ...prevConversation,
+                    messages:prevConversation?.messages.concat(newMessage)
+                }
+                return updatedConversation;
+            });
+            setValue(''); // Resetting value
         }
+    })
+    .catch((error) => {
+        console.log(error)
+        }
+    )
     }
   return (
     <footer className='flex w-full gap-1 items-center px-5 py-3 max-h-[4.75rem] h-[4.75rem] min-h-[4.75rem] box-border bg-[#f0f2f5]'> 
