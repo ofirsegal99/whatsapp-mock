@@ -9,6 +9,8 @@ import { ConversationWithEverything, participant } from '../../../../types';
 import { getPartner, getUser } from '@/actions/user';
 import { getConversation } from '@/actions/conversation';
 import Loading from '@/components/Loading';
+import { getFormattedDatesForHeader } from '@/utils/getFormattedLastMessageDate';
+import DateHeader from '@/_components/DateHeader';
 type ConversationId = {
   chat:string;
 }
@@ -48,7 +50,6 @@ const Chat:FC<ChatProps> = ({params}) => {
             }
       )
 },[])
-
   return (
     <div className='flex flex-col w-full'>
       <header className='flex w-full justify-between items-center px-5 py-3 max-h-[4.75rem] h-[4.75rem] min-h-[4.75rem] box-border bg-[#f0f2f5]'>
@@ -76,21 +77,29 @@ const Chat:FC<ChatProps> = ({params}) => {
               </Button>
           </div>
       </header>
-      <div className='flex w-full h-full flex-col justify-between items-center bg-[#fff] overflow-hidden'>
-        <div className='flex w-full h-full items-center bg-[#e7e1d6] overflow-hidden'>
-          <div className='flex flex-col justify-end w-full h-full items-center bg-chat-background bg-repeat'>
-            <div className='flex justify-end gap-4 w-full h-full bg-[#5f5748] bg-opacity-[0.2] px-16 py-8 overflow-y-scroll flex-wrap-reverse flex-row'>
+      <div className=' flex w-full h-full flex-col justify-between items-center bg-[#fff] overflow-hidden'>
+        <div className=' flex w-full h-full items-center bg-[#e7e1d6] overflow-hidden'>
+          <div className=' flex flex-col justify-end w-full h-full items-center bg-chat-background bg-repeat'>
+            <div className=' flex justify-end gap-4 w-full h-full bg-[#5f5748] bg-opacity-[0.2] px-16 py-8 overflow-y-scroll flex-wrap-reverse flex-row'>
               {!conversation ?
             <div className='flex w-full justify-center items-center h-full'>
             <Loading/>
           </div>
               :  
-              conversation.messages.toReversed().map((message) => {
+              conversation.messages.toReversed().map((message,index) => {
+                let currentDate:string = getFormattedDatesForHeader(message.dateOfSent)
+                let previousDate:string = getFormattedDatesForHeader(conversation.messages.toReversed().at(index-1)?.dateOfSent || new Date());
+                let isDateEquall:boolean = currentDate !== previousDate;
+                console.log(message)
                 let variant:'primary'|'secondary' = (message.senderId === userId) ? 'primary' : 'secondary';
                 return(
-                <Row message={message} key={message.id} variant={variant}>
+                <React.Fragment key={message.id}>
+                 {isDateEquall && index>0 && <DateHeader text={previousDate}/>}
+                <Row message={message} variant={variant}>
                     {message.content}
                 </Row>
+                {index === (conversation.messages.length - 1) && <DateHeader text={currentDate}/>}
+                </React.Fragment>
                 )
               })
               }
