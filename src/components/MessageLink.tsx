@@ -5,8 +5,7 @@ import Avatar from '@/components/Avatar'
 import { ConversationWithEverything, participant } from '../../types'
 import { useSession } from 'next-auth/react'
 import { getPartner, getUser } from '@/actions/user'
-
-
+import { getFormattedLastSeen } from '@/utils/getFormattedLastMessageDate';
 // const mockConversation = {
 //     conversationId:'6514654165as4d65sa4d6a5sd4sa65d4ad6sa54das6',
 //     conversationName:'Shauli',
@@ -78,7 +77,9 @@ interface MessageLinkProps{
 const MessageLink:FC<MessageLinkProps> = ({conversation}) => {
     const {data:session} = useSession();
     const [partner,setPartner] = useState<participant|null>(null)
+    const [lastSeen,setLastSeen] = useState<string>('')
     useLayoutEffect(() => {
+        setLastSeen(getFormattedLastSeen(conversation.messages[conversation.messages.length-1].dateOfSent));
         const fetchData = async () => {
               try{
                     let user = await getUser(session?.user?.email);
@@ -114,7 +115,7 @@ const MessageLink:FC<MessageLinkProps> = ({conversation}) => {
               ''
               :
                 <span className={`${mockConversation.isWholeConversationRead ?' text-slate-950 font-normal' :'text-[#1fa855] font-semibold'} text-sm`}>
-                {`${conversation.messages[conversation.messages.length-1].dateOfSent}`}
+                {`${lastSeen}`}
                 </span>
             }
             </span>
